@@ -1,5 +1,5 @@
 {
-    "next build": {
+    "build": {
         "env": {
             "REACT_APP_API_KEY": "@react_app_api_key",
             "REACT_APP_AUTH_DOMAIN": "@react_app_auth_domain",
