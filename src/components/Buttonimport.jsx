@@ -7,10 +7,10 @@ const Buttonimport = () => (
         <div>
             <Button className="ui button" floated='right'>
                 <Icon name='file excel' />
-                Importar
+                Crear nuevo evento
             </Button>
         </div>
     </Container>
 )
 
-export default Buttonimport
+export default ButtonImport;

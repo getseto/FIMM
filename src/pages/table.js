@@ -1,8 +1,10 @@
 import React from 'react';
-import { Button, Checkbox, Icon, Table, Segment, Input, Radio, Container } from 'semantic-ui-react';
+import { Checkbox, Table, Segment, Input, Radio, Container } from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css'
 import Search from '../components/Search';
 import { editAssistant } from '../firebase';
+import { useParams } from 'react-router-dom';
+import AddAssistants from '../components/AddAssitants';
 
 const TableRow = ({ assistant, eventId, firebase }) => {
     const [isEditable, setIsEditable] = React.useState(false);
@@ -20,7 +22,8 @@ const TableRow = ({ assistant, eventId, firebase }) => {
                     <Checkbox slider defaultChecked={formData.attended} onChange={(event, { checked }) => { editAssistant(firebase, { ...formData, attended: checked }, eventId) }} />
                 </Table.Cell>
                 <Table.Cell>{formData.firstName}</Table.Cell>
-                <Table.Cell>{formData.lastName}</Table.Cell>
+                <Table.Cell>{formData.lastName1}</Table.Cell>
+                <Table.Cell>{formData.lastName2}</Table.Cell>
                 <Table.Cell>{formData.curp}</Table.Cell>
                 <Table.Cell>{formData.phone}</Table.Cell>
                 <Table.Cell>{formData.cellphone}</Table.Cell>
@@ -62,7 +65,8 @@ const TableRow = ({ assistant, eventId, firebase }) => {
                         <Checkbox slider />
                     </Table.Cell>
                     <Table.Cell><Input name="firstName" defaultValue={formData.firstName} onChange={handleChange} /></Table.Cell>
-                    <Table.Cell><Input name="lastName" value={formData.lastName} onChange={handleChange} /></Table.Cell>
+                    <Table.Cell><Input name="lastName1" value={formData.lastName1} onChange={handleChange} /></Table.Cell>
+                    <Table.Cell><Input name="lastName2" value={formData.lastName2} onChange={handleChange} /></Table.Cell>
                     <Table.Cell><Input name="curp" value={formData.curp} onChange={handleChange} /></Table.Cell>
                     <Table.Cell><Input name="phone" value={formData.phone} onChange={handleChange} /></Table.Cell>
                     <Table.Cell><Input name="cellphone" value={formData.cellphone} onChange={handleChange} /></Table.Cell>
@@ -87,13 +91,14 @@ const TableRow = ({ assistant, eventId, firebase }) => {
 
 const DataTable = (props) => {
     const [assistants, setAssistants] = React.useState([])
-
+    const { id: eventId } = useParams();
     return (
         <Segment>
             <Container textAlign="center">
                 <Search
                     firebaseApp={props.firebaseApp}
                     setAssistants={setAssistants}
+                    eventId={eventId}
                 />
             </Container>
             <Table compact celled definition className="ui editable table">
@@ -101,7 +106,8 @@ const DataTable = (props) => {
                     <Table.Row>
                         <Table.HeaderCell> Asistencia </Table.HeaderCell>
                         <Table.HeaderCell>Nombre</Table.HeaderCell>
-                        <Table.HeaderCell>Apellidos</Table.HeaderCell>
+                        <Table.HeaderCell>Apellido Pat</Table.HeaderCell>
+                        <Table.HeaderCell>Apellido Mat</Table.HeaderCell>
                         <Table.HeaderCell>CURP</Table.HeaderCell>
                         <Table.HeaderCell>Teléfono</Table.HeaderCell>
                         <Table.HeaderCell>Celular</Table.HeaderCell>
@@ -110,43 +116,36 @@ const DataTable = (props) => {
                         <Table.HeaderCell></Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
+                {!!assistants.length &&
+                    <>
+                        <Table.Body>
+                            {
+                                assistants.map((assistant, index) => {
+                                    return (
+                                        <TableRow
+                                            key={assistant.id + index}
+                                            assistant={assistant}
+                                            eventId={eventId}
+                                            firebase={props.firebaseApp} />
+                                    )
+                                })
+                            }
 
-                <Table.Body>
-                    {
-                        assistants.map((assistant, index) => {
-                            // mandar eventID como prop a este componente (DataTable)
-                            return (
-                                <TableRow
-                                    key={assistant.id + index}
-                                    assistant={assistant}
-                                    eventId={'E92jBGTqn1DhuT26w2Qj'}
-                                    firebase={props.firebaseApp} />
-                            )
-                        })
-                    }
-
-                </Table.Body>
-
-                <Table.Footer fullWidth>
-                    <Table.Row>
-                        <Table.HeaderCell />
-                        <Table.HeaderCell colSpan='8'>
-                            <Button
-                                floated='right'
-                                icon
-                                labelPosition='left'
-                                primary
-                                size='small'
-                            >
-                                <Icon name='save' /> Guardar
-                            </Button>
-                        </Table.HeaderCell>
-                    </Table.Row>
-                </Table.Footer>
+                        </Table.Body>
+                    </>
+                }
             </Table>
+            {!assistants.length &&
+                <Container>
+                    <AddAssistants 
+                        firebaseApp={props.firebaseApp}
+                        eventId={eventId}
+                        setAssistants={setAssistants}
+                    />
+                </Container>
+            }
         </Segment>
     )
-
 }
 
 export default DataTable;
