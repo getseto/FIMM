@@ -1,5 +1,6 @@
 import React from 'react';
 import { Grid, Image, Header, Icon, Segment } from "semantic-ui-react";
+import psociales from '../img/psociales.png';
 
 const BannerComponent = () => {
   return (
@@ -12,13 +13,16 @@ const BannerComponent = () => {
           <Grid.Column>
             <Header>
               <br></br>
-              <font color="#1e636d">
-                <h2>Entrega de Beneficipos Municipales  </h2>
+              <font color="#7C858C">
+                <h2>Entrega de Beneficios Municipales  </h2>
                 <Header.Subheader>
-                  <font color="#1e636d"> <h3>Trabajando con corazón<Icon name="heart" size="small" /></h3></font>
+                  <font color="#7C858C"> <h3>Trabajando con corazón<Icon name="heart" size="small" /></h3></font>
                 </Header.Subheader>
               </font>
             </Header>
+          </Grid.Column>
+          <Grid.Column textAlign="right">
+            <Image  src={psociales} size='small' wrapped />
           </Grid.Column>
         </Grid.Row>
       </Grid>
