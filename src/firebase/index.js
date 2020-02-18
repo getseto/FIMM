@@ -51,12 +51,12 @@ export const getAssistantsForEvent = async (firebaseApp, searchTerm = '', eventI
     let snapshot
     if (searchTerm) {
         const data = (await query.where('firstName', '==', searchTerm).get()).docs.map(doc => ({...doc.data(), id: doc.id}))
-        // data.push(...(await query.where('lastName1', '==', searchTerm).get()).docs.map(doc => ({...doc.data(), id: doc.id})))
-        // data.push(...(await query.where('lastName2', '==', searchTerm).get()).docs.map(doc => ({...doc.data(), id: doc.id})))
-        // data.push(...(await query.where('curp', '==', searchTerm).get()).docs.map(doc => ({...doc.data(), id: doc.id})))
-        // data.push(...(await query.where('email', '==', searchTerm).get()).docs.map(doc => ({...doc.data(), id: doc.id})))
-        // data.push(...(await query.where('phone', '==', searchTerm).get()).docs.map(doc => ({...doc.data(), id: doc.id})))
-        // data.push(...(await query.where('cellphone', '==', searchTerm).get()).docs.map(doc => ({...doc.data(), id: doc.id})))
+        data.push(...(await query.where('lastName1', '==', searchTerm).get()).docs.map(doc => ({...doc.data(), id: doc.id})))
+        data.push(...(await query.where('lastName2', '==', searchTerm).get()).docs.map(doc => ({...doc.data(), id: doc.id})))
+        data.push(...(await query.where('curp', '==', searchTerm).get()).docs.map(doc => ({...doc.data(), id: doc.id})))
+        data.push(...(await query.where('email', '==', searchTerm).get()).docs.map(doc => ({...doc.data(), id: doc.id})))
+        data.push(...(await query.where('phone', '==', searchTerm).get()).docs.map(doc => ({...doc.data(), id: doc.id})))
+        data.push(...(await query.where('cellphone', '==', searchTerm).get()).docs.map(doc => ({...doc.data(), id: doc.id})))
         return data;
     } else {
         snapshot = await query.get()

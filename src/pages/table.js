@@ -91,7 +91,6 @@ const TableRow = ({ assistant, eventId, firebase }) => {
 
 const DataTable = (props) => {
     const [assistants, setAssistants] = React.useState([])
-    const [loading, setLoading] = React.useState(false)
     const { id: eventId } = useParams();
     return (
         <Segment style={{ overflow: 'auto' }} >
