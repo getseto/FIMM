@@ -1,5 +1,5 @@
 import React from 'react';
-import { Checkbox, Table, Segment, Input, Radio, Container } from 'semantic-ui-react';
+import { Checkbox, Table, Segment, Input, Radio, Container, Divider } from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css'
 import Search from '../components/Search';
 import { editAssistant } from '../firebase';
@@ -91,10 +91,13 @@ const TableRow = ({ assistant, eventId, firebase }) => {
 
 const DataTable = (props) => {
     const [assistants, setAssistants] = React.useState([])
+    const [loading, setLoading] = React.useState(false)
     const { id: eventId } = useParams();
     return (
         <Segment style={{ overflow: 'auto' }}>
-            <Container textAlign="center">
+            <h3 align="center">Lista de beneficiarios</h3>
+            <Divider />
+            <Container textAlign="center" >
                 <Search
                     firebaseApp={props.firebaseApp}
                     setAssistants={setAssistants}

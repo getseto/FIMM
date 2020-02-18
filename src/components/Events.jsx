@@ -1,6 +1,6 @@
 import React from 'react'
 import { useHistory, Link } from "react-router-dom";
-import { Table, Segment, Button } from 'semantic-ui-react'
+import { Table, Segment, Button, Divider } from 'semantic-ui-react'
 import { getEvents } from '../firebase';
 
 const EventList = ({ firebaseApp }) => {
@@ -16,6 +16,8 @@ const EventList = ({ firebaseApp }) => {
 
   return (
     <Segment>
+      <h3 align="center">Eventos</h3>
+      <Divider />
     <Table singleLine>
       <Table.Header>
         <Table.Row>
