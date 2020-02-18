@@ -94,7 +94,7 @@ const DataTable = (props) => {
     const [loading, setLoading] = React.useState(false)
     const { id: eventId } = useParams();
     return (
-        <Segment style={{ overflow: 'auto' }}>
+        <Segment style={{ overflow: 'auto' }} >
             <h3 align="center">Lista de beneficiarios</h3>
             <Divider />
             <Container textAlign="center" >
@@ -104,7 +104,7 @@ const DataTable = (props) => {
                     eventId={eventId}
                 />
             </Container>
-            <Table compact celled definition className="ui editable table">
+            <Table compact celled definition className="ui editable table" color="teal">
                 <Table.Header fullWidth>
                     <Table.Row>
                         <Table.HeaderCell> Asistencia </Table.HeaderCell>

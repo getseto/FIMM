@@ -2,6 +2,7 @@ import React from 'react'
 import { useHistory, Link } from "react-router-dom";
 import { Table, Segment, Button, Divider } from 'semantic-ui-react'
 import { getEvents } from '../firebase';
+import '../App.css';
 
 const EventList = ({ firebaseApp }) => {
   const history = useHistory()
@@ -18,7 +19,7 @@ const EventList = ({ firebaseApp }) => {
     <Segment>
       <h3 align="center">Eventos</h3>
       <Divider />
-    <Table singleLine>
+    <Table singleLine color="teal">
       <Table.Header>
         <Table.Row>
           <Table.HeaderCell>Nombre del evento</Table.HeaderCell>
@@ -50,7 +51,7 @@ const EventList = ({ firebaseApp }) => {
         })}
       </Table.Body>
     </Table>
-   <Button onClick = {() =>history.push('/newevent')} >
+   <Button basic color="pink" onClick = {() =>history.push('/newevent')} >
       Crear nuevo evento
     </Button>
     </Segment>

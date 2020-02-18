@@ -2,6 +2,7 @@ import React from 'react'
 import { useHistory } from "react-router-dom";
 import { Form, Segment, Button, Divider } from 'semantic-ui-react'
 import { saveEvent } from '../firebase';
+import '../App.css';
 
 const NewEvent = ({ firebaseApp }) => {
     const history = useHistory()
@@ -27,7 +28,7 @@ const NewEvent = ({ firebaseApp }) => {
                     <label>Creado por</label>
                     <input placeholder='Creado por' name='created_by' onChange={handleChange} />
                 </Form.Field>
-                <Button type='submit' onClick={async () => {
+                <Button basic color="pink" type='submit' onClick={async () => {
                     await saveEvent(firebaseApp, newEvent);
                     history.push('/events');
                 }} >Crear evento</Button>
