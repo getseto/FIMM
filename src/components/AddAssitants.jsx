@@ -7,6 +7,8 @@ import { addAssistant, getAssistantsForEvent } from '../firebase'
 
 const AddAssistants = ({ firebaseApp, eventId, setAssistants }) => {
     const [newAssistants, setNewAssistants] = React.useState()
+    const [loading, setLoading] = React.useState(false)
+
     const handleReadFile = (file) => {
         const fileString = file.target.result;
         const rows = fileString.split('\n');
@@ -45,10 +47,12 @@ const AddAssistants = ({ firebaseApp, eventId, setAssistants }) => {
                         }
                         } />
                 </Form.Field>
-                <Button type='submit' onClick={async () => {
+                <Button disabled = {loading} loading = {loading} type='submit' onClick={async () => {
+                    setLoading(true)
                     await addAssistant(firebaseApp, newAssistants, eventId);
                     const results = await getAssistantsForEvent(firebaseApp, null, eventId)
                     setAssistants(results);
+                    setLoading(false)
                 }} >
                     Guardar</Button>
                 <p>* Solo acepta archivos con extensión .csv</p>
