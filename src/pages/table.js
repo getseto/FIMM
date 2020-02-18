@@ -93,7 +93,7 @@ const DataTable = (props) => {
     const [assistants, setAssistants] = React.useState([])
     const { id: eventId } = useParams();
     return (
-        <Segment>
+        <Segment style={{ overflow: 'auto' }}>
             <Container textAlign="center">
                 <Search
                     firebaseApp={props.firebaseApp}
