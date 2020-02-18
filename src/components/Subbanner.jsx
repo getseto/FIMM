@@ -7,13 +7,12 @@ import LogOut from './LogOut'
 const Subbanner = () => {
   const history = useHistory()
   return (
-    <Segment color="grey" inverted size="mini">
+    <Segment color="grey" inverted tertiary size="mini">
       <Grid columns={3} divided>
         <Grid.Row verticalAlign="middle">
           <Grid.Column textAlign="left">
             <Button 
-              size="large" 
-              inverted basic color='facebook' 
+              size="large" basic inverted
               onClick = {() =>history.push('/events')} >
                 <Icon name="home" />
                 Inicio

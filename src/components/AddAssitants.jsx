@@ -47,7 +47,7 @@ const AddAssistants = ({ firebaseApp, eventId, setAssistants }) => {
                         }
                         } />
                 </Form.Field>
-                <Button disabled = {loading} loading = {loading} type='submit' onClick={async () => {
+                <Button basic color="pink" disabled = {loading} loading = {loading} type='submit' onClick={async () => {
                     setLoading(true)
                     await addAssistant(firebaseApp, newAssistants, eventId);
                     const results = await getAssistantsForEvent(firebaseApp, null, eventId)

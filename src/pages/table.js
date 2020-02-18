@@ -1,5 +1,5 @@
 import React from 'react';
-import { Checkbox, Table, Segment, Input, Radio, Container } from 'semantic-ui-react';
+import { Checkbox, Table, Segment, Input, Radio, Container, Divider } from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css'
 import Search from '../components/Search';
 import { editAssistant } from '../firebase';
@@ -93,15 +93,17 @@ const DataTable = (props) => {
     const [assistants, setAssistants] = React.useState([])
     const { id: eventId } = useParams();
     return (
-        <Segment style={{ overflow: 'auto' }}>
-            <Container textAlign="center">
+        <Segment style={{ overflow: 'auto' }} >
+            <h3 align="center">Lista de beneficiarios</h3>
+            <Divider />
+            <Container textAlign="center" >
                 <Search
                     firebaseApp={props.firebaseApp}
                     setAssistants={setAssistants}
                     eventId={eventId}
                 />
             </Container>
-            <Table compact celled definition className="ui editable table">
+            <Table compact celled definition className="ui editable table" color="teal">
                 <Table.Header fullWidth>
                     <Table.Row>
                         <Table.HeaderCell> Asistencia </Table.HeaderCell>
